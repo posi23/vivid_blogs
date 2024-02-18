@@ -1,0 +1,22 @@
+
+{
+    "compilerOptions": {
+        "module": "ES6",
+        "moduleResolution": "Node10",
+        "noEmit": true,
+        "allowImportingTsExtensions": true,
+        "target": "ES6",
+        "sourceMap": true,
+        "outDir": "./dist",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "lib": ["ES6", "DOM"],
+        "types": ["node"],
+        "skipLibCheck": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+    },
+    "include": ["app/**/*.ts", "server.ts", "app/config/index.ts"],
+    "exclude": ["node_modules"]
+}
