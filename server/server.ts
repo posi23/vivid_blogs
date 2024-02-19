@@ -7,7 +7,7 @@ import { QueryTypes } from "sequelize";
 
 const app = express();
 
-const corsOptions = { origin: "http://localhost:8081" };
+const corsOptions = { origin: `http://localhost:${process.env.CLIENT_PORT}` };
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json()); //to parse requests of content type - application/json

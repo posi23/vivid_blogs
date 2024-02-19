@@ -22,11 +22,16 @@ const homePage = async (req: Request, res: Response) => {
     });
     let numberOfPages = Math.ceil(count / 6);
 
+    if (Number(page) > numberOfPages) {
+      res.redirect(`/?page=${numberOfPages}`);
+      return;
+    }
+
     const result = await Blog.findAll({
       order: [["published_at", "DESC"]],
       limit: 6,
       offset: (Number(page) - 1) * 6,
-      attributes: ["title", "slug", "content", "image"],
+      attributes: ["title", "slug", "content", "image", "published_at"],
       where: {
         [Op.and]: [
           {
@@ -78,7 +83,7 @@ const singleBlog = async (req: Request, res: Response) => {
   try {
 
     const result = await Blog.findOne({
-      attributes: ["title", "slug", "content", "image"],
+      attributes: ["title", "slug", "content", "image", "published_at"],
       where: {
         slug: slug
       }
