@@ -1,0 +1,100 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    padding: 20px;
+}
+
+.deletePrompt{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    padding: 20px;
+}
+
+.deletePrompt h1{
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--border-color);
+}
+
+.container span{
+    color: var(--font-color)
+}
+
+.container h2{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--border-color);
+}
+
+.container p{
+    font-size: 14px;
+    text-align: center;
+}
+
+.buttonContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+}
+
+.deleteButton{
+    background-color: rgb(116, 15, 15);
+    color: var(--font-color);
+    font-size: 16px;
+}
+
+.deleteButton:hover{
+    background-color: var(--font-color);
+    color: rgb(116, 15, 15);
+}
+
+.cancelButton{
+    background-color: var(--border-color);
+    color: var(--primary-color);
+    font-size: 16px;
+}
+
+.cancelButton:hover{
+    background-color: var(--font-color);
+    color: var(--border-color);
+}
+
+/* Media Queries */
+@media (min-width: 768px){
+    .container h2{
+        font-size: 24px;
+    }
+
+    .container p{
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1024px){
+    .container h2{
+        font-size: 28px;
+    }
+
+    .container p{
+        font-size: 18px;
+    }
+
+    .deletePrompt h1{
+        font-size: 32px;
+    }
+
+    .buttonContainer{
+        gap: 50px;
+    }
+
+    .deleteButton, .cancelButton{
+        font-size: 20px;
+    }
+}

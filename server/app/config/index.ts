@@ -8,6 +8,7 @@ dotenv.config({
 
 interface ConfigTs {
   development: Options;
+  production: Options;
 }
 
 // module.exports = {
@@ -26,7 +27,15 @@ const config: ConfigTs = {
     dialect: "postgres",
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    database: process.env.DB_NAME_DEV,
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+  },
+  production: {
+    dialect: "postgres",
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME_PROD,
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT),
   },

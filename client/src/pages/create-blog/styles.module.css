@@ -1,0 +1,76 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 20px;
+}
+
+.container h1{
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--border-color);
+    text-align: center;
+    margin-bottom: -30px;
+}
+
+.buttonContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    /* margin-top: 20px; */
+
+}
+.button, .button2{
+    width: 40%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--border-color);
+    color: var(--primary-color);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: auto;
+}
+
+.button2{
+    width: 50%;
+    background-color: red;
+    
+}
+
+.button2:hover{
+    background-color: var(--font-color);
+}
+
+.button2 a{
+    text-decoration: none;
+    color: var(--font-color);
+}
+
+.button2:hover a{
+    color: red;
+}
+
+.button:hover{
+    background-color: var(--font-color);
+    color: var(--border-color);
+}
+
+/* Media Queries */
+@media (min-width: 1024px){
+    .container h1{
+        font-size: 30px;
+    }
+
+    .button{
+        width: 30%;
+        font-size: 20px;
+    }
+
+    .button2{
+        width: 30%;
+        font-size: 20px;
+    }
+}

@@ -14,7 +14,8 @@ module.exports = {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       title: {
         type: DataTypes.TEXT,
@@ -38,13 +39,11 @@ module.exports = {
       },
       created_at: {
         type: DataTypes.DATE,
-        field: 'created_at',
         allowNull: false,
         defaultValue: new Date()
       },
       updated_at: {
         type: DataTypes.DATE,
-        field: 'updated_at',
         allowNull: false,
         defaultValue: new Date()
       },

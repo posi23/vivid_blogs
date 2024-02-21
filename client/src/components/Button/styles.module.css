@@ -1,0 +1,11 @@
+.main{
+    background-color: var(--border-color);
+    color: var(--primary-color);
+    border: none;
+}
+
+button:disabled{
+    background-color: grey;
+    color: var(--primary-color);
+    cursor: not-allowed;
+}

@@ -11,6 +11,8 @@ class Blog extends Model<BlogAttributes> implements BlogAttributes {
   image!: string;
   published_at: Date;
   deleted_at: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 Blog.init({
 
@@ -19,12 +21,16 @@ Blog.init({
   content: DataTypes.STRING,
   image: DataTypes.STRING,
   published_at: DataTypes.DATE,
-  deleted_at: DataTypes.DATE
+  deleted_at: DataTypes.DATE,
+  created_at: DataTypes.DATE,
+  updated_at: DataTypes.DATE
 }, {
   sequelize,
   modelName: 'blogs',
   timestamps: true,
-  underscored: true
+  createdAt: 'created_at', // Custom column name for created_at
+  updatedAt: 'updated_at', // Custom column name for updated_at
+  // underscored: true
 });
 
 export default Blog;

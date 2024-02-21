@@ -3,27 +3,14 @@ import Blog from "../models/blog.model";
 import { Op } from "sequelize";
 import sequelize from "sequelize";
 
-const homePage = async (req: Request, res: Response) => {
-  if (!req.query.page && Object.keys(req.query).length === 0) {
-    res.redirect("/?page=1")
-    return;
-  }
-
-  let { page, search } = (req.query);
+const homePage = async (req: Request, res: Response, next: Function) => {
+  let { page, search, searchSuggestion } = (req.query);
 
   try {
 
-    let count = await Blog.count({
-      where: {
-        published_at: {
-          [Op.ne]: null
-        }
-      }
-    });
-    let numberOfPages = Math.ceil(count / 6);
-
-    if (Number(page) > numberOfPages) {
-      res.redirect(`/?page=${numberOfPages}`);
+    if (searchSuggestion !== "") {
+      const result = await suggestSearch(String(searchSuggestion));
+      res.status(200).send(result);
       return;
     }
 
@@ -39,40 +26,76 @@ const homePage = async (req: Request, res: Response) => {
               [Op.ne]: null
             }
           },
+          {
+            deleted_at: null
+          },
           sequelize.where(sequelize.fn('LOWER', sequelize.col('title')), {
-            [Op.like]: `%${search !== undefined ? search : ''}%`
+            [Op.like]: `%${String(search).toLowerCase()}%`
+
           })
         ]
       },
     });
 
-    if (result.length === 0) {
-      res.status(404).send("No blogs found");
-      return;
-    }
+    const totalPages = await numberOfPages(String(search))
 
-    res.status(200).send({ blogs: result, numberOfPages });
+    res.status(200).send({ blogs: result, numberOfPages: totalPages });
   } catch (err) {
     console.log(err);
   }
 };
 
-const search = async (req: Request, res: Response) => {
-  const { search } = req.body;
+const suggestSearch = async (searchSuggestion: string) => {
 
   try {
     const result = await Blog.findAll({
-      attributes: ["title"],
+      attributes: ['title'],
       limit: 5,
-      where:
-        sequelize.where(sequelize.fn('LOWER', sequelize.col('title')), {
-          [Op.like]: `%${search !== undefined ? search : ''}%`
-        })
+      where: {
+        [Op.and]: [
+          {
+            published_at: {
+              [Op.ne]: null
+            }
+          },
+          {
+            deleted_at: null
+          },
+          sequelize.where(sequelize.fn('LOWER', sequelize.col('title')), {
+            [Op.like]: `%${String(searchSuggestion).toLowerCase()}%`
+          })
+        ]
+      }
     });
-
-    res.status(200).send(result);
+    return result;
   }
   catch (err) {
+    console.log(err);
+  }
+}
+
+const numberOfPages = async (search: string) => {
+  try {
+    const result = await Blog.count({
+      where: {
+        [Op.and]: [
+          {
+            published_at: {
+              [Op.ne]: null
+            }
+          },
+          {
+            deleted_at: null
+          },
+          sequelize.where(sequelize.fn('LOWER', sequelize.col('title')), {
+            [Op.like]: `%${String(search).toLowerCase()}%`
+          })
+        ]
+      },
+    });
+
+    return Math.ceil(result / 6);
+  } catch (err) {
     console.log(err);
   }
 }
@@ -96,15 +119,33 @@ const singleBlog = async (req: Request, res: Response) => {
 }
 
 const createBlog = async (req: Request, res: Response) => {
-  const { title, slug, content, image } = req.body;
+  const { title, slug, content } = req.body.body;
+  console.log(req.body.body)
 
   try {
+    if (!req.file) {
+      return res.status(400).send('No file uploaded.');
+    }
+
+    const fileData: string = req.file.buffer.toString('utf8');
+
     const existingBlog = await Blog.findOne({
       attributes: ["title"],
-      where:
-        sequelize.where(sequelize.fn('LOWER', sequelize.col('title')), {
-          [Op.like]: title.toLowerCase()
-        })
+      where: {
+        [Op.and]: [
+          {
+            published_at: {
+              [Op.ne]: null
+            }
+          },
+          {
+            deleted_at: null
+          },
+          sequelize.where(sequelize.fn('LOWER', sequelize.col('title')), {
+            [Op.like]: `%${String(title).toLowerCase()}%`
+          })
+        ]
+      }
     });
 
     if (existingBlog) {
@@ -116,8 +157,10 @@ const createBlog = async (req: Request, res: Response) => {
       title: title,
       slug: slug,
       content: content,
-      image: image,
-      published_at: new Date()
+      image: "work permit",
+      published_at: new Date(),
+      created_at: new Date(),
+      updated_at: new Date(),
     });
 
     res.status(201).send(`New blog '${title}' successfully created`);
@@ -131,11 +174,15 @@ const deleteBlog = async (req: Request, res: Response) => {
   const { slug } = req.params;
 
   try {
-    await Blog.destroy({
-      where: {
-        slug: slug
-      }
-    });
+    await Blog.update(
+      {
+        deleted_at: new Date()
+      },
+      {
+        where: {
+          slug: slug
+        }
+      });
 
     res.status(200).send("Blog successfully deleted");
   }
@@ -146,7 +193,6 @@ const deleteBlog = async (req: Request, res: Response) => {
 
 export default {
   homePage,
-  search,
   singleBlog,
   createBlog,
   deleteBlog

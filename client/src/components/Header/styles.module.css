@@ -1,0 +1,48 @@
+
+/* Mobile first development */
+
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+    border-bottom: 3px solid var(--border-color);
+}
+
+.container h1{
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--font-color);
+    margin-left: auto;
+}
+
+.iconContainer{
+    margin-left: auto;
+}
+
+.iconContainer a{
+    text-decoration: none;
+    color: var(--border-color);
+}
+
+.iconContainer a:hover{
+    color: var(--dark-color);
+}
+
+
+/* Media Queries */
+@media (min-width: 768px){
+    .container h1{
+        font-size: 24px;
+        
+    }
+}
+
+@media (min-width: 1024px){
+    .container h1{
+        font-size: 32px;
+        
+    }
+}

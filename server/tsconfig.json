@@ -14,9 +14,10 @@
         "lib": ["ES6", "DOM"],
         "types": ["node"],
         "skipLibCheck": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
+        "resolveJsonModule": true,
+        "allowJs": true,
+
     },
-    "include": ["app/**/*.ts", "server.ts", "app/config/index.ts"],
+    "include": ["server", "server.ts"],
     "exclude": ["node_modules"]
 }

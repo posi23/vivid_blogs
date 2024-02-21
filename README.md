@@ -12,5 +12,21 @@ This project was done using:
 - Rest API (Query Language)
 
 
+**How to run**
+After cloning project, run the following on the terminal
+- cd server
+- npm i
+
+For development environment for the database
+- npm run db-init-dev
+
+
+For production environment for the database
+- npm run db-init-prod
+
+Starting the server
+- npm run dev
+- cd ../client
+- cd npm run start
 
 **Author**: POSI ADEYEMI
