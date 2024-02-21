@@ -2,7 +2,8 @@ import { useParams, useLocation } from 'react-router-dom';
 import styles from './styles.module.css'
 import { Blog, SingleBlogParams } from '../../utils/types';
 import { useSingleBlog } from '../../hooks';
-import { LoadingBar } from '../../components';
+import { Button, LoadingBar } from '../../components';
+import { FaArrowLeft } from "react-icons/fa";
 
 const SingleBlog = () => {
     const param: SingleBlogParams = useParams<SingleBlogParams>();
@@ -39,6 +40,15 @@ const SingleBlog = () => {
                 ))}
 
             </div>
+
+            <Button
+                onClick={() => window.history.back()}
+                className={styles.backButton}
+                title='Back to Home Page'
+            >
+                <FaArrowLeft size={30} />
+            </Button>
+
         </div>
 
         ;
