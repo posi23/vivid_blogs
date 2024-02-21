@@ -119,15 +119,17 @@ const singleBlog = async (req: Request, res: Response) => {
 }
 
 const createBlog = async (req: Request, res: Response) => {
-  const { title, slug, content } = req.body.body;
-  console.log(req.body.body)
+  const { body } = req.body;
+
+  const { title, slug, content } = JSON.parse(body);
 
   try {
     if (!req.file) {
       return res.status(400).send('No file uploaded.');
     }
 
-    const fileData: string = req.file.buffer.toString('utf8');
+    const fileData: string = req.file.path;
+    // console.log(req.file);
 
     const existingBlog = await Blog.findOne({
       attributes: ["title"],
@@ -157,7 +159,7 @@ const createBlog = async (req: Request, res: Response) => {
       title: title,
       slug: slug,
       content: content,
-      image: "work permit",
+      image: fileData,
       published_at: new Date(),
       created_at: new Date(),
       updated_at: new Date(),

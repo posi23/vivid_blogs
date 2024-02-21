@@ -1,18 +1,29 @@
 import BlogList from "../../components/BlogList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAllBlogs } from "../../hooks";
 import { Button, LoadingBar, PaginationBar, SearchBar } from "../../components";
 import styles from './styles.module.css';
 import { IoCloseSharp } from "react-icons/io5";
 import { HomeProps } from "../../utils/types";
+import { useLocation } from "react-router";
 
 
-const Home = ({ page, setPage, search, setSearch, searchSuggestion, setSearchSuggestion, blogs, totalPages, loading, suggestions }: HomeProps) => {
-    // const [page, setPage] = useState(1);
-    // const [search, setSearch] = useState("");
-    // const [searchSuggestion, setSearchSuggestion] = useState("");
+const Home = () => {
+    const [page, setPage] = useState(1);
+    const [search, setSearch] = useState("");
+    const [searchSuggestion, setSearchSuggestion] = useState("");
 
-    // const { blogs, totalPages, loading, suggestions } = useAllBlogs(page, search, searchSuggestion);
+    const { blogs, totalPages, loading, suggestions } = useAllBlogs(page, search, searchSuggestion);
+
+    const location = useLocation()
+
+    useEffect
+        (() => {
+            if (location.state?.deleted) {
+                setPage(1);
+                setSearch("");
+            }
+        }, [location.state?.deleted]);
 
     return loading ? <LoadingBar /> :
         <>

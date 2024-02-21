@@ -7,6 +7,13 @@
     margin-top: 10px;
 }
 
+.subContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
 .blog{
     margin-bottom: 20px;
     width: 100%;
@@ -17,6 +24,7 @@
     box-shadow: 10px 10px 30px 0px var(--border-color);
     cursor: pointer;
     text-decoration: none;
+    z-index: 0;
 }
 
 .blog img{
@@ -49,7 +57,7 @@
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    margin-bottom: auto;
+    z-index: 100;
 
 }
 

@@ -3,9 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useDeleteBlog, useSingleBlog } from '../../hooks';
 import { Button, LoadingBar } from '../../components';
 import styles from './styles.module.css';
+import { Blog } from 'src/utils/types';
 
 const DeleteBlog = () => {
-    // const { slug } = useParams<{ slug: string }>();
     const [slug, setSlug] = useState<string>()
     const tempSlug = useParams<{ slug: string }>().slug;
     const navigate = useNavigate();
@@ -22,7 +22,7 @@ const DeleteBlog = () => {
         if (!loadingDelete) {
             alert(response);
             resetResponse();
-            navigate('/');
+            navigate('/', { replace: true, state: { deleted: true } });
         }
     }, [response, loadingDelete]);
 

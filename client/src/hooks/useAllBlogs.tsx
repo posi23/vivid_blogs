@@ -34,7 +34,7 @@ const useAllBlogs = (page: number, search?: string, searchSuggestion?: string) =
         fetchData();
     }, [page, search, searchSuggestion]);
 
-    return { blogs, totalPages, suggestions, loading };
+    return { blogs, setBlogs, totalPages, setTotalPages, suggestions, loading };
 };
 
 export default useAllBlogs;

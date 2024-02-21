@@ -1,14 +1,17 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import styles from './styles.module.css'
 import { Blog, SingleBlogParams } from '../../utils/types';
 import { useSingleBlog } from '../../hooks';
 import { LoadingBar } from '../../components';
 
-const SingleBlog = ({ relatedBlogs }: { relatedBlogs: Blog[] }) => {
+const SingleBlog = () => {
     const param: SingleBlogParams = useParams<SingleBlogParams>();
     const { slug } = param;
     const { blog, loading } = useSingleBlog(slug);
-    const navigate = useNavigate();
+
+    const location = useLocation();
+
+    const relatedBlogs = location.state?.relatedBlogs as Blog[] || [];
 
     return loading ? <LoadingBar /> :
         <div className={styles.container}>
