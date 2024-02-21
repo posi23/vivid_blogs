@@ -7,7 +7,7 @@
         "allowImportingTsExtensions": true,
         "target": "ES6",
         "sourceMap": true,
-        "outDir": "./dist",
+        "outDir": "dist",
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "isolatedModules": true,
