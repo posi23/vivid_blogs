@@ -8,7 +8,7 @@ const useSingleBlog = (slug: string | undefined) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`http://localhost:8080/${slug}`);
+                const res = await axios.get(`http://localhost:${SERVER_PORT}/${slug}`);
                 setBlog(res.data);
                 setTimeout(() => {
                     setLoading(false);

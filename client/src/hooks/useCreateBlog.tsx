@@ -11,7 +11,7 @@ const useCreateBlog = (body?: FormData) => {
             try {
                 if (body === undefined) return;
 
-                const res = await axios.post('http://localhost:8080/create', body);
+                const res = await axios.post(`http://localhost:${SERVER_PORT}/create`, body);
                 setResponse(res.data);
             }
             catch (err: any) {

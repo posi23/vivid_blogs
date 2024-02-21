@@ -11,7 +11,7 @@ const useDeleteBlog = (slug?: string) => {
             try {
                 if (!slug) return;
 
-                await axios.delete(`http://localhost:8080/delete/${slug}`);
+                await axios.delete(`http://localhost:${SERVER_PORT}/delete/${slug}`);
                 setLoading(false);
                 setResponse('Blog deleted successfully');
             }
