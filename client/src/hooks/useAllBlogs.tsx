@@ -12,7 +12,7 @@ const useAllBlogs = (page: number, search?: string, searchSuggestion?: string) =
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`http://localhost:${SERVER_PORT}/?page=${page}&search=${search}&searchSuggestion=${searchSuggestion}`);
+                const res = await axios.get(`http://localhost:${process.env.SERVER_PORT}/?page=${page}&search=${search}&searchSuggestion=${searchSuggestion}`);
 
                 if (searchSuggestion !== "") {
                     setSuggestions(res.data);
