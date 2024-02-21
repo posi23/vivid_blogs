@@ -25,7 +25,7 @@ For production environment for the database
 - npm run db-init-prod
 
 Starting the server
-- npm run dev
+- npm run start
 - cd ../client
 - cd npm run start
 
