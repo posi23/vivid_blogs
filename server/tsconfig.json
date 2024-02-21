@@ -18,6 +18,6 @@
         "allowJs": true,
 
     },
-    "include": ["server", "server.ts"],
+    "include": ["server", "server.ts", "server/**/*.ts"],
     "exclude": ["node_modules"]
 }
