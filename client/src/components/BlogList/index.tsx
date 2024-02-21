@@ -8,8 +8,6 @@ const BlogList: React.FC<{ blogs: Blog[] }> = ({ blogs }) => {
     const navigate = useNavigate();
     const [startIndex, setStartIndex] = useState(0);
 
-    // const startIndex = Math.floor(Math.random() * (blogs.length - 5 + 1));
-
     const handleSingleBlogClick = (slug: string) => {
         navigate(`/${slug}`,
             { state: { relatedBlogs: blogs.slice(startIndex, startIndex + 4) } });

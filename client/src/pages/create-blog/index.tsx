@@ -24,9 +24,6 @@ const CreateBlog = () => {
             const formData = new FormData();
             formData.append('image', image);
             formData.append('body', JSON.stringify({ title, slug, content }));
-            // const file = formData.get('image') as File;
-            // const filename = file && file.name;
-
 
             setBody(formData);
             setTitle('');
@@ -38,10 +35,10 @@ const CreateBlog = () => {
     const { response, resetResponse } = useCreateBlog(body);
 
     useEffect(() => {
-        if (response !== '') {
+        if (response !== "") {
             alert(response);
             resetResponse();
-            navigate('/');
+            navigate('/', { replace: true, state: { created: true } });
         }
     }
         , [response]);

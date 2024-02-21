@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
-import { CreateBlogProps } from "../utils/types";
+import { Blog, CreateBlogProps } from "../utils/types";
 
 const useCreateBlog = (body?: FormData) => {
-    const [response, setResponse] = useState('');
+    const [response, setResponse] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -22,7 +22,7 @@ const useCreateBlog = (body?: FormData) => {
     }, [body]);
 
     const resetResponse = () => {
-        setResponse('');
+        setResponse("");
     }
 
     return { response, resetResponse };

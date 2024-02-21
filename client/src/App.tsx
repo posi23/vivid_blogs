@@ -3,10 +3,6 @@ import { Header } from './components';
 import './App.css';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { useEffect, useState } from 'react';
-import { useAllBlogs } from './hooks';
-
-
 
 function App() {
 

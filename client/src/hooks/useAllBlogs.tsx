@@ -18,6 +18,20 @@ const useAllBlogs = (page: number, search?: string, searchSuggestion?: string) =
                     setSuggestions(res.data);
                 }
                 else {
+                    // const blogs = res.data.blogs.map((blog: Blog) => {
+                    //     const _blog = { ...blog };
+                    //     _blog.image = `http://localhost:${process.env.SERVER_PORT || 8080}/uploads/${blog.image}`;
+                    //     return _blog;
+                    // }
+                    // );
+                    // const  =
+
+                    // setBlogs(res.data.blogs.map((blog: Blog) => {
+                    //     const _blog = { ...blog };
+                    //     _blog.image = `http://localhost:${process.env.SERVER_PORT || 8080}/uploads/${blog.image}`;
+                    //     return _blog;
+                    // }
+                    // ));
                     setBlogs(res.data.blogs);
                     setTotalPages(res.data.numberOfPages);
                     setSuggestions([]);

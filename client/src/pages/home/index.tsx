@@ -19,11 +19,11 @@ const Home = () => {
 
     useEffect
         (() => {
-            if (location.state?.deleted) {
+            if (location.state?.deleted || location.state?.created) {
                 setPage(1);
                 setSearch("");
             }
-        }, [location.state?.deleted]);
+        }, [location.state?.deleted, location.state?.created]);
 
     return loading ? <LoadingBar /> :
         <>

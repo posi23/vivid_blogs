@@ -2,11 +2,12 @@ import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import routes from "./app/routes";
-import db from "./app/config/db"
+import path from "path";
 
 const app = express();
 
 app.use(cors());
+app.use(express.static(path.join(__dirname, './public')));
 app.use(bodyParser.json()); //to parse requests of content type - application/json
 app.use(bodyParser.urlencoded({ extended: true })); //parse requests of content-type - application/x-www-form-urlencoded
 
