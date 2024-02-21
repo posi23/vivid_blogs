@@ -135,3 +135,5 @@ dist
 *.pdf
 
 */package-lock.json
+
+server/public
