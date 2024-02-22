@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // Purpose: Configuration for the database connection
 var dotenv = require("dotenv");
 dotenv.config({
-    path: '${__dirname}/../.env'
+    path: '${__dirname}/../../.env'
 });
 // module.exports = {
 //   development: {

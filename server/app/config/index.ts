@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 import { Options } from 'sequelize';
 
 dotenv.config({
-  path: '${__dirname}/../.env'
+  path: '${__dirname}/../../.env'
 });
 
 interface ConfigTs {
