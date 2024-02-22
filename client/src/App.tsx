@@ -1,7 +1,6 @@
 import { CreateBlog, DeleteBlog, ErrorPage, Home, SingleBlog } from './pages';
 import { Header } from './components';
 import './App.css';
-
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 function App() {

@@ -67,24 +67,31 @@ const Home = () => {
                     <BlogList
                         blogs={blogs}
                     /> :
-                    <>
+
+                    search === "" ?
                         <h2
-                            style={{ textAlign: "center", color: "var(--font-color)" }}
+                            style={{ textAlign: "center", color: "var(--font-color)", marginTop: "2rem" }}
                         >
-                            No search results found for "{search}"
-                        </h2>
-
-                        <div className={styles.button}>
-                            <Button
-                                onClick={() => setSearch("")}
-
+                            No blogs found
+                        </h2> :
+                        <>
+                            <h2
+                                style={{ textAlign: "center", color: "var(--font-color)", marginTop: "2rem" }}
                             >
-                                Go Back Home
-                            </Button>
-                        </div>
+                                No search results found for "{search}"
+                            </h2>
+
+                            <div className={styles.button}>
+                                <Button
+                                    onClick={() => setSearch("")}
+
+                                >
+                                    Go Back Home
+                                </Button>
+                            </div>
 
 
-                    </>
+                        </>
 
             }
             {blogs.length > 0 && <PaginationBar
