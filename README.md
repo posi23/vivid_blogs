@@ -12,17 +12,20 @@ This project was done using:
 - Rest API (Query Language)
 
 
-You can either use my .env file in the server app for this or you can use yours for your own database
+You can either use both my .env files (in the root of the project, and the another in the client directory) for this or you can create a new one.
 
-Make sure to include this in your .env file
-SERVER_PORT
-DB_USER
-DB_PASSWORD
-DB_NAME_DEV
-DB_NAME_PROD
-DB_HOST
-DB_DIALECT
-DB_PORT
+For the .env file that will be in the root of the application, make sure to have:
+- SERVER_PORT (the port where the backend server will be started on)
+- DB_USER (username to the database)
+- DB_PASSWORD (password to the database)
+- DB_NAME_DEV (name to the database being used for development environment)
+- DB_NAME_PROD (name to the database being used for production environment)
+- DB_HOST
+- DB_DIALECT
+- DB_PORT
+
+For the .env file that will be in the client directory, make sure to have:
+- REACT_APP_API_SERVER_PORT (this will be the port to the backend/server where we will be making API calls to, from the client side)
 
 
 **How to run**
